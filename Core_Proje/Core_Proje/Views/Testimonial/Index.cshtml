@@ -1,0 +1,55 @@
+﻿@using EntityLayer.Concrate
+@model List<Testimonial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-header border-0">
+    <div style="display:flex; align-items:center; justify-content:space-between; ">
+        <div>
+            <h3 class="mb-0">Referans Listesi Tablosu</h3>
+        </div>
+        <div>
+            <a href="/Testimonial/AddTestimonial" class="btn btn-primary h-100" type="submit">Referans Ekle</a>
+
+        </div>
+
+    </div>
+</div>
+<!-- Light table -->
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+        <thead>
+            <tr>
+                <th> Müşteri </th>
+                <th> Şirket </th>
+                <th> Title </th>
+                <th> Sil </th>
+                <th> Güncelle </th>
+            </tr>
+        </thead>
+        <tbody class="list">
+                    @foreach (var value in Model)
+                    {
+                <tr>
+                    <td class="py-1">
+                        <img src="@value.ImageUrl" alt="image" />
+                        <span class="pl-2">#@value.TestimonialId</span>
+                    </td>
+                    <td> @value.ClientName </td>
+                    <td> @value.Company </td>
+                    <td>
+                        <a href="/Testimonial/DeleteTestimonial/@value.TestimonialId" class="btn btn-danger text-white">Sil</a>
+                    </td>
+                    <td>
+                        <a href="/Testimonial/UpdateTestimonial/@value.TestimonialId" class="btn btn-warning text-white">Güncelle</a>
+
+                    </td>
+                </tr>
+                    }
+
+    </table>
+</div>

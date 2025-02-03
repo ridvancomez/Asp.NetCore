@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "AddAnnouncement";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+@using EntityLayer.Concrate
+@model Announcement
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Default form</h4>
+        <p class="card-description">
+            Basic form layout
+        </p>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <label>Başlık</label>
+                @Html.HiddenFor(x => x.AnnouncementId)
+                @Html.TextBoxFor(x => x.Title, "", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Tarih</label>
+                        @Html.TextBoxFor(x => x.Title, "", htmlAttributes: new { @class = "form-control", type = "datetime-local" })
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Durum</label>
+                        <br />
+                        <label>Kapalı</label>
+                        @Html.RadioButtonFor(x => x.Status, "0", htmlAttributes: new { @class = "mr-4", name = "status" })
+                        <label>Açık</label>
+                        @Html.RadioButtonFor(x => x.Status, "1", htmlAttributes: new { @class = "form-controls", name = "status" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>İçerik</label>
+                @Html.TextAreaFor(x => x.Content, 5, 10, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+            <button class="btn btn-light" type="reset">Temizle</button>
+
+        }
+    </div>
+</div>
+

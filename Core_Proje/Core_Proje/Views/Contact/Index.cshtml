@@ -1,0 +1,58 @@
+﻿@using EntityLayer.Concrate
+@model List<Message>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    Dictionary<bool, string> status = new Dictionary<bool, string>
+    {
+        {true,"Okundu"},
+        {false,"Okunmadı"}
+    };
+}
+
+<div class="table-responsive">
+    <div class="mb-3">
+        <h3 class="mb-0">Mesaj Listesi Tablosu</h3>
+    </div>
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="sort" data-sort="name">#</th>
+                <th scope="col" class="sort" data-sort="budget">Başlık</th>
+                <th scope="col" class="sort" data-sort="budget">Email</th>
+                <th scope="col" class="sort" data-sort="budget">Tarih</th>
+                <th scope="col" class="sort" data-sort="budget">Durum</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Detay</th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            @foreach (var value in Model){
+                <tr>
+                    <th>
+                        @value.MessageId
+                    </th>
+                    <td class="budget">
+                        @value.Name
+                    </td>
+                    <td class="budget">
+                        @value.EMil
+                    </td>
+                    <td class="budget">
+                        @value.Date.ToShortDateString()
+                    </td>
+                    <td class="budget">
+                        @status[value.Status]
+                    </td>
+                    <td>
+                        <a href="/Contact/DeleteMessage/@value.MessageId" class="btn btn-danger text-white">Sil</a>
+                    </td>
+                    <td>
+                        <a href="/Contact/MessageDetail/@value.MessageId" class="btn btn-info text-white">Detay</a>
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@using EntityLayer.Concrate
+@model List<Announcement>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var statusMap = new Dictionary<bool, (string Color, string Name)>
+    {
+        { true, ("badge-success", "Açık") },
+        { false, ("badge-danger", "Kapalı") }
+    };
+
+}
+
+<div class="table-responsive">
+    <h3 class="card-title m-3">Hoverable Table</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Başlık</th>
+                <th>Tarih</th>
+                <th class="text-center">Durum</th>
+                <th class="text-center">Sil</th>
+                <th class="text-center">Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var value in Model)
+            {
+
+                <tr>
+                    <td>@value.AnnouncementId</td>
+                    <td>@value.Title</td>
+                    <td>@value.Date.ToString("yyyy,MMM,dd")</td>
+                    <td class="text-center"><label class="@statusMap[value.Status].Color p-2 text-center" style="border-radius:25%">@statusMap[value.Status].Name</label></td>
+                    <td class="text-center"><a href="DeleteAnnouncement/@value.AnnouncementId" class="btn btn-danger">Sil</a></td>
+                    <td class="text-center"><a href="UpdateAnnouncement/@value.AnnouncementId" class="btn btn-warning">Güncelle</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

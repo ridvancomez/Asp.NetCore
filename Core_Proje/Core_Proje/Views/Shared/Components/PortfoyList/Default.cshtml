@@ -1,0 +1,55 @@
+﻿@using EntityLayer.Concrate
+@model List<Portfolio>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Order Status</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th> #</th>
+                                <th> İsim </th>
+                                <th> Resim Yolu </th>
+                                <th> Büyük Resim Yolu </th>
+                                <th> Proje Yolu </th>
+                                <th> Start Date </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var value in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        <img src="@value.ImageUrl" alt="image" />
+                                    </td>
+                                    <td>@value.PortfolioId</td>
+                                    <td>@value.Name</td>
+                                    <td class="url"> @value.ImageUrl </td>
+                                    <td class="url"> @value.ImageUrl2 </td>
+                                    <td class="url"> @value.ProjectUrl </td>
+                                    <td>
+                                        <div class="badge badge-outline-success">Approved</div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const url = document.getElementsByClassName('url');
+        for (let i = 0; i < url.length; i++) {
+        const shortText = url[i].textContent.slice(0, 20); // İlk 10 karakter
+        url[i].textContent = shortText+'...'; // Kısaltılmış metni atayın
+    }
+
+</script>

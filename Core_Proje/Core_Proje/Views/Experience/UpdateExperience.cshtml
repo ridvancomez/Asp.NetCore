@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateExperience";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using EntityLayer.Concrate
+@model Experience
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-8">
+                <h3 class="mb-0">Deneyim Düzenle </h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            @Html.HiddenFor(value => Model.ExperienceId)
+            <h6 class="heading-small text-muted mb-4">Deneyim Bilgileri</h6>
+            <div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+
+                            <label class="form-control-label" for="input-username">Yetenke Adı</label>
+                            @Html.TextBoxFor(value => Model.Name, htmlAttributes: new { @class = "form-control", id = "input-username", placeholder = "İsim" })
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Değer</label>
+                            @Html.TextBoxFor(value => Model.Date, htmlAttributes: new { @class = "form-control", placeholder = "Tarih"})
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+
+                            <label class="form-control-label" for="input-username">Yetenke Adı</label>
+                            @Html.TextBoxFor(value => Model.ImageUrl, htmlAttributes: new { @class = "form-control", id = "input-username", placeholder = "Resim Yolu" })
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Değer</label>
+                            @Html.TextBoxFor(value => Model.Title, htmlAttributes: new { @class = "form-control", placeholder = "Başlık" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+
+                            <label class="form-control-label" for="input-username">Yetenke Adı</label>
+                            @Html.TextAreaFor(value => Model.Description, htmlAttributes: new { @class = "form-control", id = "input-username", placeholder = "Açıklama" })
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-left">
+                    <button class="btn btn-primary h-100" type="submit">Kaydet</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+

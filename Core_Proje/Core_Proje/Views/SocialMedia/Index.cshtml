@@ -1,0 +1,54 @@
+﻿@using EntityLayer.Concrate
+@model List<SocialMedia>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-header border-0">
+    <div style="display:flex; align-items:center; justify-content:space-between; ">
+        <div>
+            <h3 class="mb-0">Sosyal Medya Listesi Tablosu</h3>
+        </div>
+        <div>
+            <a href="/SocialMedia/AddSocialMedia" class="btn btn-primary h-100" type="submit">Sosyal Medya Ekle</a>
+
+        </div>
+
+    </div>
+</div>
+<!-- Light table -->
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+        <thead>
+            <tr>
+                <th> # </th>
+                <th> İsim </th>
+                <th> Durum </th>
+                <th> Sil </th>
+                <th> Güncelle </th>
+            </tr>
+        </thead>
+        <tbody class="list">
+                    @foreach (var value in Model)
+                    {
+                <tr>
+                    <td class="py-1">
+                        <span class="pl-2">@value.SocialMediaId</span>
+                    </td>
+                    <td> @value.Name </td>
+                    <td> @value.Status </td>
+                    <td>
+                        <a href="/SocialMedia/DeleteSocialMedia/@value.SocialMediaId" class="btn btn-danger text-white">Sil</a>
+                    </td>
+                    <td>
+                        <a href="/SocialMedia/UpdateSocialMedia/@value.SocialMediaId" class="btn btn-warning text-white">Güncelle</a>
+
+                    </td>
+                </tr>
+                    }
+
+    </table>
+</div>

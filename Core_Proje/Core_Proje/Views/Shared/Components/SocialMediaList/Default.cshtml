@@ -1,0 +1,6 @@
+﻿@model List<EntityLayer.Concrate.SocialMedia>
+            
+            @foreach(var value in Model)
+            {
+                <li class="nav-item"><a class="nav-link" href="@value.Url" title="@value.Name"><i class="@value.Icon"></i><span class="menu-title sr-only">@value.Name</span></a></li>
+            }

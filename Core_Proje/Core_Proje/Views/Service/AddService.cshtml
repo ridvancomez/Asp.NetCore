@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "AddService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col-8">
+                <h3 class="mb-0">Hizmet Ekle </h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <h6 class="heading-small text-muted mb-4">Hizmet Bilgileri</h6>
+            <div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">İsim</label>
+                            <input type="text" id="input-username" class="form-control" name="Title" placeholder="İsim">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-email">Resim Yolu</label>
+                            <input type="text" id="input-email" class="form-control" name="ImageUrl" placeholder="Resim Yolu">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <button class="btn btn-primary h-100" type="submit">Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

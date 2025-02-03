@@ -1,0 +1,91 @@
+﻿@using EntityLayer.Concrate
+@model List<WriterMessage>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+
+}
+
+<div class="table-responsive">
+    <h3 id="messageTitle" class="card-title m-3">Gelen Mesajlar</h3>
+    <div class="d-flex justify-content-between mr-5 mb-4 ml-4">
+        <button id="getMessagesBtn" class="btn btn-outline-primary" value="Sender">Gönderilen Mesajları Göster</button>
+        <a href="/Writer/Message/AddMessage" id="getMessagesBtn" class="btn btn-primary" value="Sender">Yeni Mesaj Ekle</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Konu</th>
+                <th>Tarih</th>
+                <th id="senderOrReceiver">Gönderici</th>
+                <th class="text-center">Detay</th>
+            </tr>
+        </thead>
+        <tbody id="messageContainer">
+            @foreach (var value in Model)
+            {
+                <tr>
+                    <td>@value.WriterMessageId</td>
+                    <td>@value.Subject</td>
+                    <td>@value.Date.ToString("dd.MM.yyyy")</td>
+                    <td>@value.SenderName</td>
+                    <td class="text-center"><a href="/Writer/Message/MessageDetail/@value.WriterMessageId" class="btn btn-outline-info">Detay</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#getMessagesBtn").click(function () {
+            var messageType = $("#getMessagesBtn").val();
+
+    $.ajax({
+        url: "/Writer/Message/GetMessages",
+        type: "POST",
+        data: { messageType: messageType },
+
+        success: function (response) {
+            console.log("Gelen veri:", response); 
+            var container = $("#messageContainer");
+            container.empty();
+
+            $("#senderOrReceiver").text(messageType == "Receiver" ? "Gönderici" : "Alıcı");
+            $("#messageTitle").text(messageType == "Receiver" ? "Gelen Mesajlar" : "Gönderilen Mesajlar");
+            $("#getMessagesBtn").text(messageType == "Receiver" ? "Gönderilen Mesajları Listele" : "Gelen Mesajları Listele");
+            $("#getMessagesBtn").val(messageType == "Receiver" ? "Sender" : "Receiver");
+
+            if (response && response.length > 0) {
+                $.each(response, function (index, value) {
+                    console.log("Mesaj:", value);
+
+                   
+                    var formattedDate = new Date(value.date).toLocaleDateString("tr-TR");
+
+                    var row = "<tr>" +
+                    "<td>" + value.writerMessageId + "</td>" +
+                    "<td>" + value.subject + "</td>" +
+                    "<td>" + formattedDate + "</td>" +
+                    "<td>" + (messageType == "Receiver" ? value.senderName : value.receiverName) + "</td>"+
+
+
+                    "<td class='text-center'><a href='/Writer/Message/MessageDetail/" + value.writerMessageId + "' class='btn btn-outline-info'>Detay</a></td>" +
+                    "</tr>";
+
+                container.append(row); 
+
+                });
+            } else {
+                container.append("<tr><td colspan='5'>Hiç mesaj bulunamadı.</td></tr>");
+            }
+        },
+        error: function (error) {
+            alert("Bir hata oluştu" + error.message)
+        }
+            });
+        });
+    });
+</script>

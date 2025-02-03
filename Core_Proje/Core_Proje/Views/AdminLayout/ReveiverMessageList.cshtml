@@ -1,0 +1,45 @@
+﻿@using EntityLayer.Concrate
+@model List<WriterMessage>
+@{
+    ViewData["Title"] = "ReveiverMessageList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Yazar-Admin Gelen Kutusu</h3>
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="sort" data-sort="name">#</th>
+                <th scope="col" class="sort" data-sort="budget">Gönderici E Postası</th>
+                <th scope="col" class="sort" data-sort="status">Gönderici Adı</th>
+                <th scope="col">Başlık</th>
+                <th scope="col" class="sort" data-sort="completion">Güncelle</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            @foreach (var value in Model)
+            {
+                <tr>
+                    <th>
+                        @value.WriterMessageId
+                    </th>
+                    <td class="budget">
+                        @value.Sender
+                    </td>
+                    <td class="budget">
+                        @value.SenderName
+                    </td>
+                    <td class="budget">
+                        @value.Subject
+                    </td>
+                    <td>
+                        <a href="/AdminLayout/MessageDetail/@value.WriterMessageId" class="btn btn-primary text-white">Detay</a>
+
+                    </td>
+                </tr>
+            }
+
+    </table>
+</div>
