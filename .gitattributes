@@ -1,0 +1,7 @@
+###############################################################################
+# Vendor / third-party assets excluded from GitHub language statistics
+###############################################################################
+Core_Proje/Core_Proje/wwwroot/lib/** linguist-vendored
+Core_Proje/Core_Proje/wwwroot/Template/** linguist-vendored
+Core_Proje/Core_Proje/wwwroot/skydash/** linguist-vendored
+Core_Proje/Core_Proje/wwwroot/corona-free-dark-bootstrap-admin-template-1.0.0/** linguist-vendored
